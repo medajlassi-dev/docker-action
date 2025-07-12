@@ -1,0 +1,23 @@
+name: Build and Push Docker image
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Checkout the code
+        run: actions/checkout@v4
+      - 
+        name: Login to the docker repository
+        run: docker login --username ${{ vars.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_TOKEN }}
+      -
+        name: Build the Docker image
+        run: docker build -t ${{ vars.DOCKER_USERNAME }}/docker-action:v0.1
+      -
+        name: Deploy the Docker image
+        run: docker push
+
