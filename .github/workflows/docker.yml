@@ -16,8 +16,10 @@ jobs:
         run: docker login --username ${{ vars.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_TOKEN }}
       -
         name: Build the Docker image
+        working-directory: docker
         run: docker build -t ${{ vars.DOCKER_USERNAME }}/docker-action:v0.1 .
       -
         name: Deploy the Docker image
+        working-directory: docker
         run: docker push ${{ vars.DOCKER_USERNAME }}/docker-action:v0.1
 
