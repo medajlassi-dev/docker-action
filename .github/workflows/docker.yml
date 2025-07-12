@@ -7,6 +7,8 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    env:
+      DOCKER_IMAGE_NAME: ${{ vars.DOCKER_USERNAME }}/docker-action
     steps:
       - 
         name: Checkout the code
@@ -26,5 +28,8 @@ jobs:
         with:
           context: docker
           push: true
-          tags: ${{ vars.DOCKER_USERNAME }}/docker-action:v0.2
+          tags: |
+            $DOCKER_IMAGE_NAME:${{ github.sha }}
+            $DOCKER_IMAGE_NAME:latest
+            
 
