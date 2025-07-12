@@ -1,8 +1,11 @@
 name: Build and Push Docker image
 
 on:
-  push:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/docker.yml"
+      - "docker/**"
 
 jobs:
   build-deploy:
@@ -29,7 +32,7 @@ jobs:
           context: docker
           push: true
           tags: |
-            $DOCKER_IMAGE_NAME:${{ github.sha }}
-            $DOCKER_IMAGE_NAME:latest
+            ${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.DOCKER_IMAGE_NAME }}:latest
             
 
