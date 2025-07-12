@@ -19,5 +19,5 @@ jobs:
         run: docker build -t ${{ vars.DOCKER_USERNAME }}/docker-action:v0.1 .
       -
         name: Deploy the Docker image
-        run: docker push
+        run: docker push ${{ vars.DOCKER_USERNAME }}/docker-action:v0.1
 
