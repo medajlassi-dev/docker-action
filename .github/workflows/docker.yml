@@ -34,11 +34,10 @@ jobs:
           tags: |
             ${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
             ${{ env.DOCKER_IMAGE_NAME }}:latest
-            
-
-  check:
-    runs-on: ubuntu-latest
-    steps:
       -
-        name: Echo the github token variable
-        run: echo ${{ secrets.GITHUB_TOKEN }}
+        name: upload the Docker Image
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./docker/${{ env.DOCKER_IMAGE_NAME }}:latest
+          name: ${{ env.DOCKER_IMAGE_NAME }}
+            
