@@ -1,0 +1,25 @@
+name: Create a test file
+
+on:
+  push:
+  workflow_dispatch:
+  
+jobs:
+  create-file:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: checkout the repo
+        uses: action/checkout@v4
+      -
+        name: Login
+        run: |
+          git config --global user.name "Github Action"
+          git config --global user.email "action@github.com"
+      - 
+        name: Create a test file
+        run: |
+          echo "Hello world" > test.txt
+          git add test.txt
+          git commit -m "Create test.txt file"
+          git push origin main
