@@ -1,0 +1,15 @@
+name: variables.yml
+
+on:
+  workflow_dispatch
+
+jobs:
+  variables:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Create a new variables
+        run: echo "VAR_1=var_1" >> $GITHUB_ENV
+      -
+        name: Print the variable
+        run: echo "$VAR_1"
