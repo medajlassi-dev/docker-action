@@ -13,3 +13,12 @@ jobs:
       -
         name: Print the variable
         run: echo "$VAR_1"
+      -
+        name: set color
+        id: selected-color
+        run: echo "SELECTED-COLOR=green" >> $GITHUB_OUTPUT
+      -
+        name: get color
+        env:
+          SELECTED_COLOR: ${{ steps.selected-color.outputs.SELECTED-COLOR }}
+        run: echo "The selected color is ${{ env.SELECTED_COLOR }}"
